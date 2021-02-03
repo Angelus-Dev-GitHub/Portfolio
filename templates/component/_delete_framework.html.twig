@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('admin_delete_framework', {'id': framework.id}) }}" onsubmit="return confirm('Es-tu sûre de vouloir supprimer ce framework ?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ framework.id) }}">
+    <button class="delete-btn">Supprimer</button>
+</form>

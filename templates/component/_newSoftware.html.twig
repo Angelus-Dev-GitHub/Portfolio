@@ -1,0 +1,21 @@
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+</button>
+<div id="nouveau-resource">
+    <h3 class="part-title">Créer</h3>
+</div>
+<div class="container-fluid-resource">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-7 profile-main-forms">
+            <div class="form">
+                {% form_theme formSoftware 'bootstrap_4_layout.html.twig' %}
+                {{ form_start(formSoftware) }}
+                {{ form_widget(formSoftware) }}
+                <div class="d-flex flex-row-reverse">
+                    <button class="btn mt-5">{{ button_label|default('Valider') }}</button>
+                </div>
+                {{ form_end(formSoftware) }}
+            </div>
+        </div>
+    </div>
+</div>

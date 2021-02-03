@@ -3,16 +3,192 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
-    <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
-        <div class="form-modal-knowledge">
-            <button type="button" class="knowledge-button" data-toggle="modal" data-target="#modalKnowledge">
-                un langage
-            </button>
-            <div class="modal fade" id="modalKnowledge" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            {% include '/component/_newfiche_edit.html.twig' %}
+    <div class="admin">
+        <div>
+            <h2>Langages</h2>
+            {% for language in languages %}
+                <ul>
+                    <li>{{ language.name }}<i class="{{ language.icon }}"></i>
+                        <button class="edit-btn"><a href="{{ path('admin_edit_language', {'id': language.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_language.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-language">
+                    <button type="button" class="language-button" data-toggle="modal" data-target="#modalLanguage">
+                        Créer un nouveau langage
+                    </button>
+                    <div class="modal fade" id="modalLanguage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newLanguage.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Librairies</h2>
+            {% for librairie in librairies %}
+                <ul>
+                    <li>{{ librairie.name }}<i class="{{ librairie.icon }}"></i>
+                        <button class="edit-btn"><a href="{{ path('admin_edit_librairie', {'id': librairie.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_librairie.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-librairie">
+                    <button type="button" class="language-button" data-toggle="modal" data-target="#modallibrairie">
+                        Créer une nouvelle librairie
+                    </button>
+                    <div class="modal fade" id="modalLibrairie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newLibrairie.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Frameworks</h2>
+            {% for framework in frameworks %}
+                <ul>
+                    <li>{{ framework.name }}<i class="{{ framework.icon }}"></i>
+                        <button class="edit-btn"><a href="{{ path('admin_edit_framework', {'id': framework.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_framework.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-framework">
+                    <button type="button" class="framework-button" data-toggle="modal" data-target="#modalFramework">
+                        Créer un nouveau framework
+                    </button>
+                    <div class="modal fade" id="modalFramework" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newFramework.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Design Pattern</h2>
+            {% for designPattern in designPatterns %}
+                <ul>
+                    <li>{{ designPattern.name }}
+                        <button class="edit-btn"><a href="{{ path('admin_edit_designPattern', {'id': designPattern.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_designPattern.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-designPattern">
+                    <button type="button" class="designPattern-button" data-toggle="modal" data-target="#modalDesignPattern">
+                        Créer un nouveau design pattern
+                    </button>
+                    <div class="modal fade" id="modalDesignPattern" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newDesignPattern.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Logiciels</h2>
+            {% for software in softwares %}
+                <ul>
+                    <li>{{ software.name }}<i class="{{ software.icon }}"></i>
+                        <button class="edit-btn"><a href="{{ path('admin_edit_software', {'id': software.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_software.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-software">
+                    <button type="button" class="software-button" data-toggle="modal" data-target="#modalSoftware">
+                        Créer un nouveau logiciel
+                    </button>
+                    <div class="modal fade" id="modalSoftware" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newSoftware.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Methodes</h2>
+            {% for method in methods %}
+                <ul>
+                    <li>{{ method.name }}
+                        <button class="edit-btn"><a href="{{ path('admin_edit_method', {'id': method.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_method.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-method">
+                    <button type="button" class="method-button" data-toggle="modal" data-target="#modalMethod">
+                        Créer une nouvelle méthode
+                    </button>
+                    <div class="modal fade" id="modalMethod" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newMethod.html.twig' %}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>CMS</h2>
+            {% for contentManagementSystem in contentManagementSystems %}
+                <ul>
+                    <li>{{ contentManagementSystem.name }}<i class="{{ contentManagementSystem.icon }}"></i>
+                        <button class="edit-btn"><a href="{{ path('admin_edit_cms', {'id': contentManagementSystem.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_cms.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-contentManagementSystem">
+                    <button type="button" class="contentManagementsystem-button" data-toggle="modal" data-target="#modalContentManagementSystemm">
+                        Créer un nouveau CMS
+                    </button>
+                    <div class="modal fade" id="modalContentManagementSystem" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newContentManagementSystem.html.twig' %}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

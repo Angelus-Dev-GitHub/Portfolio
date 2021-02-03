@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+        <div class="form-modal-knowledge">
+            <button type="button" class="knowledge-button" data-toggle="modal" data-target="#modalKnowledge">
+                un langage
+            </button>
+            <div class="modal fade" id="modalKnowledge" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            {% include '/component/_newfiche_edit.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

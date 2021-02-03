@@ -1,20 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AboutController!{% endblock %}
+{% block title %}About Me{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/wcsthierry/WCS/Side Projects/Portfolio/src/Controller/AboutController.php'|file_link(0) }}">src/Controller/AboutController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/wcsthierry/WCS/Side Projects/Portfolio/templates/about/index.html.twig'|file_link(0) }}">templates/about/index.html.twig</a></code></li>
-    </ul>
-</div>
+{% block contact %}
+    <div class="aboutMe">
+        <div class="row">
+            <div class="col-6 contactInformation">
+                <ul class="ul-contact">
+                    <li class="item-contact">
+                        {{ user.lastname }} {{ user.firstname }}
+                    </li>
+                    <li class="item-contact">
+                        <i class="fas fa-envelope-open"></i>t.dufosse666@gmail.com
+                    </li>
+                    <li class="item-contact">
+                        <i class="fas fa-phone-square-alt"></i>06.78.23.27.26
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 contactForm">
+                <div class="form-service">
+                    {% form_theme formContact 'bootstrap_4_layout.html.twig' %}
+                    {{ form_start(formContact) }}
+                    {{ form_row(formContact.name) }}
+                    {{ form_row(formContact.email) }}
+                    {{ form_row(formContact.subject) }}
+                    {{ form_row(formContact.message) }}
+                    <div class="d-flex flex-row-reverse">
+                        <button class="btn mt-5">{{ button_label|default('Envoyer le mail') }}</button>
+                    </div>
+                    {{ form_end(formContact) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

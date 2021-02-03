@@ -1,18 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contact{% endblock %}
 
-{% block body %}
+{% block contact %}
     <div class="contact">
         <div class="row">
-            <div class="col-xl-6 contactInformation">
-                <img src="https://picsum.photos/200/300" alt="profilPicture" class="profilPicture">
+            <div class="col-6 contactInformation">
+                <ul class="ul-contact">
+                    <li class="item-contact">
+                        Thierry DUFOSSE
+                    </li>
+                    <li class="item-contact">
+                        t.dufosse666@gmail.com
+                    </li>
+                    <li class="item-contact">
+                        06.78.23.27.26
+                    </li>
+                </ul>
             </div>
-            <div class="col-xl-6 text">
-                <h1>Bonjour,</h1>
-                <p>Je m'appelle Thierry DUFOSSE</p>
-                <p>Je suis Developpeur Web Full Stack Junior, professionnel énergique, motivé et doté d'un solide esprit d'équipe,
-                    je sais gérer les situations de grand stress et atteindre les objectifs dans les délais</p>
+            <div class="col-6 contactForm">
+                <div class="form-service">
+                    {% form_theme formContact 'bootstrap_4_layout.html.twig' %}
+                    {{ form_start(formContact) }}
+                    {{ form_row(formContact.name) }}
+                    {{ form_row(formContact.email) }}
+                    {{ form_row(formContact.subject) }}
+                    {{ form_row(formContact.message) }}
+                    <div class="d-flex flex-row-reverse">
+                        <button class="btn mt-5">{{ button_label|default('Envoyer le mail') }}</button>
+                    </div>
+                    {{ form_end(formContact) }}
+                </div>
             </div>
         </div>
     </div>

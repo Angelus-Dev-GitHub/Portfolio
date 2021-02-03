@@ -1,0 +1,19 @@
+.contact{
+  display: flex;
+  .row{
+    width: 100%;
+    padding: 12em 0;
+    align-items: center;
+  }
+  .contactInformation{
+    text-align: center;
+    color: $main-white;
+    .item-contact{
+      list-style: none;
+    }
+  }
+  .contactForm{
+    max-width: 40%;
+    color: $main-white;
+  }
+}

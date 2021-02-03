@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, UserRepository $userRepository): Response
     {
         $contact = new Contact();
         $formContact = $this->createForm(ContactType::class, $contact);
@@ -37,9 +38,13 @@ class ContactController extends AbstractController
             $this->addFlash('success', 'Vous avez bien envoyé un message');
             return $this->redirectToRoute('contact');
         }
+
+        $user = $userRepository->findOneBy(['lastname' => 'DUFOSSE']);
+
         return $this->render('contact/index.html.twig', [
             'controller_name' => 'ContactController',
             'formContact' => $formContact->createView(),
+            'user' => $user,
         ]);
     }
 }

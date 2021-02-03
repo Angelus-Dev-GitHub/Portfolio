@@ -1,0 +1,18 @@
+.navbar{
+  background-color: $main-black;
+  display: flex;
+  .navbar-collapse{
+    justify-content: space-around;
+  }
+  .navbar-nav{
+    .nav-item{
+      .nav-link{
+        color: $main-blue;
+        i{
+          font-size: 2em;
+          padding-right: 0.5em;
+        }
+      }
+    }
+  }
+}

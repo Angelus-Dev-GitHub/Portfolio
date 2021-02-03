@@ -3,9 +3,18 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1>Bonjour,</h1>
-    <p>Je m'appelle Thierry DUFOSSE</p>
-    <p>Je suis Developpeur Web Full Stack Junior, professionnel énergique, motivé et doté d'un solide esprit d'équipe,
-        je sais gérer les situations de grand stress et atteindre les objectifs dans les délais</p>
-
+    <div class="home">
+        <div class="row">
+            <div class="col-xl-6 picture">
+                {# <img src="{{ asset('build/images/profilpicture') }}" alt="logo" class="logo-design"> #}
+                <img src="https://picsum.photos/200/300" alt="profilPicture" class="profilPicture">
+            </div>
+            <div class="col-xl-6 text">
+                <h1>Bonjour,</h1>
+                <p>Je m'appelle Thierry DUFOSSE</p>
+                <p>Je suis Developpeur Web Full Stack Junior, professionnel énergique, motivé et doté d'un solide esprit d'équipe,
+                    je sais gérer les situations de grand stress et atteindre les objectifs dans les délais</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

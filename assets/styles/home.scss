@@ -1,0 +1,18 @@
+.home{
+  display: flex;
+  .row{
+    padding: 7em 0;
+    align-items: center;
+  }
+  .picture{
+    text-align: center;
+  }
+  .profilPicture {
+    width: 400px;
+    height: auto;
+  }
+  .text{
+    max-width: 40%;
+    color: $main-white;
+  }
+}

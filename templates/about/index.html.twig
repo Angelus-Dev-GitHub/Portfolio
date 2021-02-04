@@ -4,32 +4,122 @@
 
 {% block contact %}
     <div class="aboutMe">
+        <div class="aboutMe-title">
+            <h1>A PROPOS DE MOI</h1>
+        </div>
         <div class="row">
-            <div class="col-6 contactInformation">
-                <ul class="ul-contact">
-                    <li class="item-contact">
-                        {{ user.lastname }} {{ user.firstname }}
-                    </li>
-                    <li class="item-contact">
-                        <i class="fas fa-envelope-open"></i>t.dufosse666@gmail.com
-                    </li>
-                    <li class="item-contact">
-                        <i class="fas fa-phone-square-alt"></i>06.78.23.27.26
-                    </li>
-                </ul>
-            </div>
-            <div class="col-6 contactForm">
-                <div class="form-service">
-                    {% form_theme formContact 'bootstrap_4_layout.html.twig' %}
-                    {{ form_start(formContact) }}
-                    {{ form_row(formContact.name) }}
-                    {{ form_row(formContact.email) }}
-                    {{ form_row(formContact.subject) }}
-                    {{ form_row(formContact.message) }}
-                    <div class="d-flex flex-row-reverse">
-                        <button class="btn mt-5">{{ button_label|default('Envoyer le mail') }}</button>
+            <div class="col-6 userInformation">
+                <div class="userInformation-details">
+                    <div class="userInformation-title">
+                        <h3>Informations Personnelles</h3>
                     </div>
-                    {{ form_end(formContact) }}
+                    <div class="row">
+                        <div class="col-6 userInformation-first">
+                            <p>Prénom: {{ user.firstname }}</p>
+                            <p>Nom: {{ user.lastname }}</p>
+                            <p>Age: {{ user.age }}</p>
+                            <p>Nationality: {{user.nationality}}</p>
+                        </div>
+                        <div class="col-6 userInformation-second">
+                            <p>Adresse: {{ user.adress }}</p>
+                            <p>Phone: {{ user.phone }}</p>
+                            <p>Email: {{ user.email }}</p>
+                            <p>linkedIn: {{ user.linkedin }}</p>
+                            <p>Github: {{ user.github }}</p>
+                            <p>Langues: {{ user.language }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="userInformation-cv">
+                    <div>
+                        <a class="CV" href="/uploads/{{ cv.name }}" target="_blanck">Télécharger mon CV</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 userInformation-bloc">
+                <div class="row bloc-first">
+                    <div class="bloc-years col-6">
+                        <p>1</p>
+                        <p>Année d'expérience</p>
+                    </div>
+                    <div class="bloc-project col-6">
+                        <p>5</p>
+                        <p>Projets complétés</p>
+                    </div>
+                </div>
+                <div class="row bloc-second">
+                    <div class="bloc-client col-6">
+                        <p>2</p>
+                        <p>Clients satisfaits</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="skills">
+            <div class="skills-title">
+                <h2>MES SKILLS</h2>
+            </div>
+            <div class="row skills-details1">
+                <div>
+                    <h3>Langages</h3>
+                    {% for language in languages %}
+                        <ul>
+                            <li>{{ language.name }}<i class="{{ language.icon }}"></i></li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <div>
+                    <h3>Librairies</h3>
+                    {% for librairie in librairies %}
+                        <ul>
+                            <li>{{ librairie.name }}<i class="{{ librairie.icon }}"></i></li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <div>
+                    <h3>Frameworks</h3>
+                    {% for framework in frameworks %}
+                        <ul>
+                            <li>{{ framework.name }}<i class="{{ framework.icon }}"></i></li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <div>
+                    <h3>Design Patterns</h3>
+                    {% for designPattern in designPatterns %}
+                        <ul>
+                            <li>{{ designPattern.name }}</li>
+                        </ul>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row skills-details2">
+                <div>
+                    <h3>Logiciels</h3>
+                    {% for software in softwares %}
+                        <ul>
+                            <li>{{ software.name }}<i class="{{ software.icon }}"></i></li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <div>
+                    <h3>Méthodes</h3>
+                    {% for method in methods %}
+                        <ul>
+                            <li>{{ method.name }}</li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <div>
+                    <h3>CMS</h3>
+                    {% for contentManagementsystem in contentManagementSystems %}
+                        <ul>
+                            <li>{{ contentManagementsystem.name }}</li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <div>
+
                 </div>
             </div>
         </div>

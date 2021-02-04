@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portfolio!{% endblock %}
+
+{% block body %}
+<div class="project">
+<div>
+    <h3 class="part-title">{{project.name}}</h3>
+</div>
+<div class="container-fluid-project">
+    {% for picture in project.pictures %}
+                <img src="/uploads/{{ picture.name }}" width="300px" height="200px"   class="picture-project" alt="...">
+    {% endfor %}
+</div>
+<div>
+    <div>
+        <p>Description: {{ project.description }}</p>
+    </div>
+    <div>
+        <p>Nom du client: {{ project.customers.name}}</p>
+    </div>
+    <div>
+        <p>Langages:
+        {% for language in project.language %}
+            {{ language.name }}{{ language.icon }}
+        {% endfor %}
+        </p>
+    </div>
+    <div>
+        <p>Librairies:
+            {% for librairie in project.librairies %}
+                {{ librairie.name }}{{ librairie.icon }}
+            {% endfor %}
+        </p>
+    </div>
+    <div>
+        <p>Frameworks:
+            {% for framework in project.frameworks %}
+                {{ framework.name }}{{ framework.icon }}
+            {% endfor %}
+        </p>
+    </div>
+    <div>
+        <p>Design Pattern:
+            {% for designPatterns in project.designPattern %}
+                {{ designPatterns.name }}
+            {% endfor %}
+        </p>
+    </div>
+    <div>
+        <p>Logiciels:
+            {% for software in project.softwares %}
+                {{ software.name }}{{ software.icon }}
+            {% endfor %}
+        </p>
+    </div>
+    <div>
+        <p>Méthodes:
+            {% for methods in project.method %}
+                {{ methods.name }}
+            {% endfor %}
+        </p>
+    </div>
+    <div>
+        <p>CMS:
+            {% for contentManagementSystem in project.contentManagementSystems %}
+                {{ contentManagementSystem.name }}
+            {% endfor %}
+        </p>
+    </div>
+    <div>
+        <p>picture:
+            {% for picture in project.pictures %}
+                {{ picture.name }}
+            {% endfor %}
+        </p>
+    </div>
+</div>
+</div>
+
+{% endblock %}

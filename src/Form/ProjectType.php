@@ -89,13 +89,6 @@ class ProjectType extends AbstractType
                 'expanded' => true,
                 'label' => 'Choisir un client',
             ])
-            ->add('pictures', EntityType::class, [
-                'class' => Picture::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'label' => 'Choisir des images',
-            ])
         ;
     }
 

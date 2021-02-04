@@ -1,28 +1,12 @@
 .portfolio{
-  .top {
-    height: 0;
-    width: 0;
-    display: block;
-    border: 20px solid red;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: red;
-    border-left-color: transparent;
+  .portfolio-title{
+    text-align: center;
   }
-  .middle {
-    height: 20px;
-    background: red;
-    width: 40px;
-    display: block;
-  }
-  .bottom {
-    height: 0;
-    width: 0;
-    display: block;
-    border: 20px solid red;
-    border-top-color: red;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
+  .card{
+    width: 100%;
+    height: auto;
+    .card-title{
+      color: $main-black;
+    }
   }
 }

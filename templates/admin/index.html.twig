@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
     <div class="admin">
@@ -187,6 +187,114 @@
                             <div class="modal-content">
                                 <div class="modal-body">
                                     {% include '/component/_newContentManagementSystem.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Types de Projet</h2>
+            {% for typeProject in typesProject %}
+                <ul>
+                    <li>{{ typeProject.name }}
+                        <button class="edit-btn"><a href="{{ path('admin_edit_typeProject', {'id': typeProject.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_typeProject.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-typeProject">
+                    <button type="button" class="typeProject-button" data-toggle="modal" data-target="#modalTypeProject">
+                        Créer un nouveau type de projet
+                    </button>
+                    <div class="modal fade" id="modalTypeProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newTypeProject.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Clients</h2>
+            {% for customer in customers %}
+                <ul>
+                    <li>{{ customer.name }}
+                        <button class="edit-btn"><a href="{{ path('admin_edit_customer', {'id': customer.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_customer.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-customer">
+                    <button type="button" class="customer-button" data-toggle="modal" data-target="#modalCustomer">
+                        Créer un nouveau client
+                    </button>
+                    <div class="modal fade" id="modalCustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newCustomer.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Projets</h2>
+            {% for project in projects %}
+                <ul>
+                    <li>{{ project.name }}
+                        <button class="edit-btn"><a href="{{ path('admin_edit_project', {'id': project.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_project.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-project">
+                    <button type="button" class="project-button" data-toggle="modal" data-target="#modalProject">
+                        Créer un nouveau projet
+                    </button>
+                    <div class="modal fade" id="modalProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newProject.html.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Images</h2>
+            {% for picture in pictures %}
+                <ul>
+                    <li>{{ picture.name }}
+                        <button class="edit-btn"><a href="{{ path('admin_edit_picture', {'id': picture.id}) }}">Editer</a></button>
+                        {% include '/component/_delete_picture.html.twig' %}
+                    </li>
+                </ul>
+            {% endfor %}
+            <div class="profile-button-container d-flex flex-wrap justify-content-center ml-2">
+                <div class="form-modal-picture">
+                    <button type="button" class="picture-button" data-toggle="modal" data-target="#modalPicture">
+                        Créer une nouvelle image
+                    </button>
+                    <div class="modal fade" id="modalPicture" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {% include '/component/_newPicture.html.twig' %}
                                 </div>
                             </div>
                         </div>

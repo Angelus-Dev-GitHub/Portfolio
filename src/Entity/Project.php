@@ -80,6 +80,11 @@ class Project
      */
     private $webLink;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="projects")
+     */
+    private $pictures;
+
     public function __construct()
     {
         $this->language = new ArrayCollection();
@@ -89,6 +94,7 @@ class Project
         $this->softwares = new ArrayCollection();
         $this->method = new ArrayCollection();
         $this->contentManagementSystems = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -320,6 +326,36 @@ class Project
     public function setWebLink(?string $webLink): self
     {
         $this->webLink = $webLink;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setProjects($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getProjects() === $this) {
+                $picture->setProjects(null);
+            }
+        }
 
         return $this;
     }

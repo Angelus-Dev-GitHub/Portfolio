@@ -3,26 +3,38 @@
 namespace App\Controller;
 
 use App\Entity\ContentManagementSystem;
+use App\Entity\Customer;
 use App\Entity\DesignPattern;
 use App\Entity\Framework;
 use App\Entity\Language;
 use App\Entity\Librairie;
 use App\Entity\Method;
+use App\Entity\Picture;
+use App\Entity\Project;
 use App\Entity\Software;
+use App\Entity\TypeProject;
 use App\Form\ContentManagementSystemType;
+use App\Form\CustomerType;
 use App\Form\DesignPatternType;
 use App\Form\FrameworkType;
 use App\Form\LanguageType;
 use App\Form\LibrairieType;
 use App\Form\MethodType;
+use App\Form\PictureType;
+use App\Form\ProjectType;
 use App\Form\SoftwareType;
+use App\Form\TypeProjectType;
 use App\Repository\ContentManagementSystemRepository;
+use App\Repository\CustomerRepository;
 use App\Repository\DesignPatternRepository;
 use App\Repository\FrameworkRepository;
 use App\Repository\LanguageRepository;
 use App\Repository\LibrairieRepository;
 use App\Repository\MethodRepository;
+use App\Repository\PictureRepository;
+use App\Repository\ProjectRepository;
 use App\Repository\SoftwareRepository;
+use App\Repository\TypeProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +58,11 @@ class AdminController extends AbstractController
                           DesignPatternRepository $designPatternRepository,
                           SoftwareRepository $softwareRepository,
                           MethodRepository $methodRepository,
-                          ContentManagementSystemRepository $contentManagementSystemRepository): Response
+                          ContentManagementSystemRepository $contentManagementSystemRepository,
+                          TypeProjectRepository $typeProjectRepository,
+                          CustomerRepository $customerRepository,
+                          ProjectRepository $projectRepository,
+                          PictureRepository $pictureRepository): Response
     {
         $language = new Language();
         $formLanguage = $this->createForm(LanguageType::class, $language);
@@ -111,6 +127,43 @@ class AdminController extends AbstractController
             $this->redirectToRoute('admin_index');
         }
 
+        $typeProject = new TypeProject();
+        $formTypeProject = $this->createForm(TypeProjectType::class, $typeProject);
+        $formTypeProject->handleRequest($request);
+        if ($formTypeProject->isSubmitted() && $formTypeProject->isValid()) {
+            $entityManager->persist($typeProject);
+            $entityManager->flush();
+            $this->redirectToRoute('admin_index');
+        }
+
+        $customer = new Customer();
+        $formCustomer = $this->createForm(CustomerType::class, $customer);
+        $formCustomer->handleRequest($request);
+        if ($formCustomer->isSubmitted() && $formCustomer->isValid()) {
+            $entityManager->persist($customer);
+            $entityManager->flush();
+            $this->redirectToRoute('admin_index');
+        }
+
+        $project = new Project();
+        $formProject = $this->createForm(ProjectType::class, $project);
+        $formProject->handleRequest($request);
+        if ($formProject->isSubmitted() && $formProject->isValid()) {
+            $entityManager->persist($project);
+            $entityManager->flush();
+            $this->redirectToRoute('admin_index');
+        }
+
+        $picture = new Picture();
+        $formPicture = $this->createForm(PictureType::class, $picture);
+        $formPicture->handleRequest($request);
+        if ($formPicture->isSubmitted() && $formPicture->isValid()) {
+            $entityManager->persist($picture);
+            $entityManager->flush();
+            $this->redirectToRoute('admin_index');
+        }
+
+
         return $this->render('admin/index.html.twig', [
             'languages' => $languageRepository->findAll(),
             'librairies' => $librairieRepository->findAll(),
@@ -119,6 +172,10 @@ class AdminController extends AbstractController
             'softwares' => $softwareRepository->findAll(),
             'methods' => $methodRepository->findAll(),
             'contentManagementSystems' => $contentManagementSystemRepository->findAll(),
+            'typesProject' => $typeProjectRepository->findAll(),
+            'customers' => $customerRepository->findAll(),
+            'projects' => $projectRepository->findAll(),
+            'pictures' => $pictureRepository->findAll(),
             'formLanguage' => $formLanguage->createView(),
             'formLibrairie' => $formLibrairie->createView(),
             'formFramework' => $formFramework->createView(),
@@ -126,6 +183,10 @@ class AdminController extends AbstractController
             'formSoftware' => $formSoftware->createView(),
             'formMethod' => $formMethod->createView(),
             'formCMS' => $formCMS->createView(),
+            'formTypeProject' => $formTypeProject->createView(),
+            'formCustomer' => $formCustomer->createView(),
+            'formProject' => $formProject->createView(),
+            'formPicture' => $formPicture->createView(),
         ]);
 
     }
@@ -305,7 +366,104 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/language/{id}", name="delete_language", methods={"DELETE"})
+     * @Route("/edit/typeProject/{id}", methods={"GET", "POST"}, name="edit_typeProject")
+     * @return Response
+     */
+
+        public function editTypeProject(Request $request,
+                                                    int $id,
+                                                    TypeProjectRepository $typeProjectRepository): Response
+        {
+            $typeProject = $typeProjectRepository->findOneBy(['id' => $id]);
+
+            $formEditTypeProject = $this->createForm(TypeProjectType::class, $typeProject);
+            $formEditTypeProject->handleRequest($request);
+            if ($formEditTypeProject->isSubmitted() && $formEditTypeProject->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('admin_index', [
+                ]);
+            }
+
+            return $this->render('component/_edit.html.twig', [
+                'form' => $formEditTypeProject->createView(),
+            ]);
+        }
+
+    /**
+     * @Route("/edit/customer/{id}", methods={"GET", "POST"}, name="edit_customer")
+     * @return Response
+     */
+
+    public function editCustomer(Request $request,
+                                    int $id,
+                                    CustomerRepository $customerRepository): Response
+    {
+        $customer = $customerRepository->findOneBy(['id' => $id]);
+
+        $formEditCustomer = $this->createForm(CustomerType::class, $customer);
+        $formEditCustomer->handleRequest($request);
+        if ($formEditCustomer->isSubmitted() && $formEditCustomer->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_index', [
+            ]);
+        }
+
+        return $this->render('component/_edit.html.twig', [
+            'form' => $formEditCustomer->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/edit/project/{id}", methods={"GET", "POST"}, name="edit_project")
+     * @return Response
+     */
+
+    public function editProject(Request $request,
+                                 int $id,
+                                 ProjectRepository $projectRepository): Response
+    {
+        $project = $projectRepository->findOneBy(['id' => $id]);
+
+        $formEditProject = $this->createForm(ProjectType::class, $project);
+        $formEditProject->handleRequest($request);
+        if ($formEditProject->isSubmitted() && $formEditProject->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_index', [
+            ]);
+        }
+
+        return $this->render('component/_edit.html.twig', [
+            'form' => $formEditProject->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/edit/picture/{id}", methods={"GET", "POST"}, name="edit_picture")
+     * @return Response
+     */
+
+    public function editPicture(Request $request,
+                                int $id,
+                                PictureRepository $pictureRepository): Response
+    {
+        $picture = $pictureRepository->findOneBy(['id' => $id]);
+
+        $formEditPicture = $this->createForm(PictureType::class, $picture);
+        $formEditPicture->handleRequest($request);
+        if ($formEditPicture->isSubmitted() && $formEditPicture->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_index', [
+            ]);
+        }
+
+        return $this->render('component/_edit.html.twig', [
+            'form' => $formEditPicture->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/delete/language/{id}", name="delete_language", methods={"DELETE"})
      */
     public function deleteLanguage(
         Request $request,
@@ -416,4 +574,69 @@ class AdminController extends AbstractController
         }
         return $this->redirectToRoute('admin_index');
     }
+
+    /**
+     * @Route("/delete/typeProject/{id}", name="delete_typeProject", methods={"DELETE"})
+     */
+    public function deleteTypeProject(
+        Request $request,
+        TypeProject $typeProject
+    ): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $typeProject->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($typeProject);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('admin_index');
+    }
+
+    /**
+     * @Route("/delete/customer/{id}", name="delete_customer", methods={"DELETE"})
+     */
+    public function deleteCustomer(
+        Request $request,
+        Customer    $customer
+    ): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $customer->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($customer);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('admin_index');
+    }
+
+    /**
+     * @Route("/delete/project/{id}", name="delete_project", methods={"DELETE"})
+     */
+    public function deleteProject(
+        Request $request,
+        Project $project
+    ): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $project->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($project);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('admin_index');
+    }
+
+    /**
+     * @Route("/delete/picture/{id}", name="delete_picture", methods={"DELETE"})
+     */
+    public function deletePicture(
+        Request $request,
+        Picture $picture
+    ): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $picture->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($picture);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('admin_index');
+    }
+
 }
